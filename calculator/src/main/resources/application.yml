@@ -1,0 +1,36 @@
+service:
+  port: 8080
+  pet:
+    openapi:
+      dev-url: http://localhost:8080
+spring:
+  application:
+    name: Сalculator
+    description: Калькулятор рассчета предложений и скоринга
+    version: 1.0.0
+  doc:
+    swagger-ui:
+      path: /swagger-ui.html
+
+  mvc:
+   pathmatch:
+    matching-strategy: ANT_PATH_MATCHER
+  output:
+    ansi:
+      enabled: ALWAYS
+
+calcproperties.discountSalaryClient: 0.02
+calcproperties.discountInsuranceEnabled: 0.1
+calcproperties.minimumLivingWage: 20000.0
+calcproperties.insurancePercentPerMonthMax100: 0.004
+calcproperties.insurancePercentPerMonthMax500: 0.0036
+calcproperties.insurancePercentPerMonthMax2000: 0.0032
+calcproperties.insurancePercentPerMonthMax5000: 0.003
+calcproperties.rateMax500: 0.25
+calcproperties.rateMax2000: 0.24
+calcproperties.rateMax5000: 0.23
+calcproperties.maxAmountToSalaryRatio: 25.0
+
+
+
+
