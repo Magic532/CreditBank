@@ -1,6 +1,6 @@
-package ru.mayorov.calculator.dto;
+package ru.mayorov.deal.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -10,35 +10,17 @@ import java.time.LocalDate;
  * DTO (Data Transfer Object) for loan information
  */
 @Data
-@Schema(description = "Сущность график платежей")
 public class PaymentScheduleElementDto {
-
-    @Schema(description = "Порядковый номер платежа")
     private Integer number;
-
-    @Schema(description = "Дата платежа")
     private LocalDate date;
-
-    @Schema(description = "Общая сумма платежа ")
     private BigDecimal totalPayment;
-
-    @Schema(description = "Сумма уплаченных процентов")
     private BigDecimal interestPayment;
-
-    @Schema(description = "Сумма уплаченного основного долга")
     private BigDecimal debtPayment;
-
-    @Schema(description = "Оставшийся основной долг")
     private BigDecimal remainingDebt;
 
     public PaymentScheduleElementDto() {}
 
-    public PaymentScheduleElementDto(Integer number,
-                                     LocalDate date,
-                                     BigDecimal totalPayment,
-                                     BigDecimal interestPayment,
-                                     BigDecimal debtPayment,
-                                     BigDecimal remainingDebt) {
+    public PaymentScheduleElementDto(Integer number, LocalDate date, BigDecimal totalPayment, BigDecimal interestPayment, BigDecimal debtPayment, BigDecimal remainingDebt) {
         this.number = number;
         this.date = date;
         this.totalPayment = totalPayment;
@@ -94,6 +76,4 @@ public class PaymentScheduleElementDto {
     public void setRemainingDebt(BigDecimal remainingDebt) {
         this.remainingDebt = remainingDebt;
     }
-=======
->>>>>>> b098792 (Реализация mvp1)
 }

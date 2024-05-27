@@ -1,0 +1,31 @@
+server:
+  port: 9090
+  pet:
+    openapi:
+      dev-url: http://localhost:9090
+
+spring:
+  application:
+    name: deal
+    description: Одобрение заявки и сохранение данных в БД
+    version: 1.0.0
+  doc:
+    swagger-ui:
+      path: /swagger-ui.html
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+  datasource:
+    url: url
+    driverClassName: org.h2.Driver
+    username: username
+    password: password
+
+  output:
+    ansi:
+      enabled: ALWAYS
+
+spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto: none
