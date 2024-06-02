@@ -1,0 +1,16 @@
+Index: calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculatorServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ru.mayorov.calculator.service.impl;\r\n\r\nimport org.springframework.stereotype.Service;\r\nimport ru.mayorov.calculator.dto.CreditDto;\r\nimport ru.mayorov.calculator.dto.LoanOfferDto;\r\nimport ru.mayorov.calculator.dto.LoanStatementRequestDto;\r\nimport ru.mayorov.calculator.dto.ScoringDataDto;\r\nimport ru.mayorov.calculator.service.CalculatorService;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n@Service\r\npublic class CalculatorServiceImpl implements CalculatorService {\r\n    @Override\r\n    public List<LoanOfferDto> prescorring(LoanStatementRequestDto loanStatementRequestDto) {\r\n        return null;\r\n    }\r\n\r\n    @Override\r\n    public CreditDto scorring(ScoringDataDto scoringDataDto) {\r\n        return null;\r\n    }\r\n}
+===================================================================
+diff --git a/calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculatorServiceImpl.java b/calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculatorServiceImpl.java
+--- a/calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculatorServiceImpl.java	
++++ b/calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculatorServiceImpl.java	
+@@ -7,7 +7,6 @@
+ import ru.mayorov.calculator.dto.ScoringDataDto;
+ import ru.mayorov.calculator.service.CalculatorService;
+ 
+-import java.util.ArrayList;
+ import java.util.List;
+ 
+ @Service
