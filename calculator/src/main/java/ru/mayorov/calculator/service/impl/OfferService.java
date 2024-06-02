@@ -29,12 +29,7 @@ public class OfferService {
                 offer.add(createOffer(false, false, loanStatementRequestDto));
                 offer.add(createOffer(false, false, loanStatementRequestDto));
                 offer.add(createOffer(false, false, loanStatementRequestDto));
-//                return List.of(
-//                        createOffer(false, false, loanStatementRequestDto),
-//                        createOffer(false, true, loanStatementRequestDto),
-//                        createOffer(true, false, loanStatementRequestDto),
-//                        createOffer(true, true, loanStatementRequestDto)
-//                );
+
                 return offer;
             }
         } catch (IllegalArgumentException exception) {
@@ -49,7 +44,7 @@ public class OfferService {
                                     Boolean isSalaryClient,
                                     LoanStatementRequestDto loanStatementRequestDto) {
 
-        BigDecimal totalAmount = calculateService.calculateTotalAmount(loanStatementRequestDto.getAmount(), loanStatementRequestDto.getTerm(), isInsuranceEnabled);
+        BigDecimal totalAmount = calculateService.calculateTotalAmountOffer(loanStatementRequestDto.getAmount(), loanStatementRequestDto.getTerm(), isInsuranceEnabled);
 
         BigDecimal rate = calculateService.calculateRateOffer(loanStatementRequestDto.getAmount(), isInsuranceEnabled, isSalaryClient);
 

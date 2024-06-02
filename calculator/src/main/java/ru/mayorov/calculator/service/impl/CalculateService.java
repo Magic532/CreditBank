@@ -16,7 +16,6 @@ import java.util.List;
 @Service
 public class CalculateService {
 
-    private final static BigDecimal ONE = new BigDecimal("1");
     private final static BigDecimal LIVINGWAGE = new BigDecimal("20000");
 
     @Value("$insurancePercentPerMonthMax100")
@@ -40,7 +39,7 @@ public class CalculateService {
     @Value("rateMax5000")
     private String rateMax5000;
 
-    public BigDecimal calculateTotalAmount(BigDecimal amount, Integer term, Boolean isInsuranceEnabled){
+    public BigDecimal calculateTotalAmountOffer(BigDecimal amount, Integer term, Boolean isInsuranceEnabled){
 
         BigDecimal insurancePercentPerMonth = new BigDecimal(insurancePercentPerMonthMax100);
 
@@ -84,25 +83,46 @@ public class CalculateService {
 
         rate = rate.divide(new BigDecimal("12"),10, RoundingMode.HALF_UP);
 
-        BigDecimal annuityСoefficient = (rate.multiply(ONE.add(rate)).pow(term))
-                        .divide((ONE.add(rate)).pow(term)).subtract(ONE);
+        BigDecimal annuityСoefficient = (rate
+                        .multiply(new BigDecimal("1")
+                        .add(rate)).pow(term))
+                        .divide((new BigDecimal("1")
+                        .add(rate))
+                        .pow(term))
+                        .subtract(new BigDecimal("1"));
 
         return annuityСoefficient.multiply(totalAmount).setScale(2, RoundingMode.HALF_UP);
     }
 
-    public BigDecimal calculateAmountScoring(BigDecimal amount, BigDecimal salary, LocalDate birthdate){
+    public BigDecimal calculateAmountScoring(BigDecimal amount, BigDecimal salary, Integer term, LocalDate birthdate, Boolean isInsuranceEnabled) {
+
+        BigDecimal insurancePercentPerMonth = new BigDecimal(insurancePercentPerMonthMax100);
+
         int age = Period.between(birthdate, LocalDate.now()).getYears();
+
         if ((amount.divide(salary).compareTo(new BigDecimal("25")) <= 0) && (age >= 20) && (age <= 65)) {
-            return amount;
-        }else {
-            return null;
+            if (isInsuranceEnabled) {
+                if (amount.compareTo(new BigDecimal("100000")) > 0) {
+                    insurancePercentPerMonth = new BigDecimal(insurancePercentPerMonthMax500);
+                }
+                if (amount.compareTo(new BigDecimal("500000")) > 0) {
+                    insurancePercentPerMonth = new BigDecimal(insurancePercentPerMonthMax2000);
+                }
+                if (amount.compareTo(new BigDecimal("2000000")) > 0) {
+                    insurancePercentPerMonth = new BigDecimal(insurancePercentPerMonthMax5000);
+                }
+                return amount.add(amount.multiply(insurancePercentPerMonth)
+                                .multiply(new BigDecimal(term)))
+                        .setScale(2, RoundingMode.HALF_UP);
+            } else {
+                return amount;
+            }
         }
+        return null;
     }
 
+
     public Integer calculateTermScoring(BigDecimal amount, BigDecimal rate, Integer term, BigDecimal salary){
-        while ((salary.subtract(calculateMonthlyPayment(amount, term, rate)).compareTo(LIVINGWAGE) < 0) && (term <= 60)){
-            term++;
-        }
         if (salary.subtract(calculateMonthlyPayment(amount, term, rate)).compareTo(LIVINGWAGE) > 0){
             return term;
         }else{
@@ -119,33 +139,56 @@ public class CalculateService {
 
     public BigDecimal calculatePsk(BigDecimal monthlyPayment, BigDecimal amount, Integer term){
 //todo исправить пск
-        return (monthlyPayment.multiply(new BigDecimal(term)).divide(amount).subtract(ONE)).divide(new BigDecimal(term).divide(new BigDecimal("12")));
+        return (monthlyPayment
+                .multiply(new BigDecimal(term))
+                .divide(amount).subtract(new BigDecimal("1")))
+                .divide(new BigDecimal(term)
+                .divide(new BigDecimal("12")));
     }
 
-    public List<PaymentScheduleElementDto> calculatePaymentSchedule(BigDecimal amount, BigDecimal rate, Integer term, BigDecimal monthlyPayment){
+    public List<PaymentScheduleElementDto> calculatePaymentSchedule(BigDecimal totalAmount, BigDecimal rate, Integer term, BigDecimal monthlyPayment){
 
         LocalDate today = LocalDate.now();
         List<PaymentScheduleElementDto> paymentSchedule = new ArrayList<>();
 
-        for (int i = 1; i <= term; i++ ){
-            PaymentScheduleElementDto paymentScheduleElementDto = createPaymentSchedule(i,today, amount, rate, term, monthlyPayment);
-            amount = paymentScheduleElementDto.getRemainingDebt();
+        for (int i = 1; i < term; i++ ){
+            PaymentScheduleElementDto paymentScheduleElementDto = createPaymentSchedule(i,today, totalAmount, rate, term, monthlyPayment);
+            totalAmount = paymentScheduleElementDto.getRemainingDebt();
             paymentSchedule.add(paymentScheduleElementDto);
         }
+
+        monthlyPayment = totalAmount.
+                add(totalAmount
+                .multiply(rate)
+                .divide(new BigDecimal("365"), 10, RoundingMode.HALF_UP)
+                .multiply(new BigDecimal(ChronoUnit.DAYS.between(today.plusMonths(term-1), today.plusMonths(term))))
+                .setScale(2,RoundingMode.HALF_UP));
+
+        PaymentScheduleElementDto paymentScheduleElementDto = createPaymentSchedule(term,today, totalAmount, rate, term, monthlyPayment);
+        paymentSchedule.add(paymentScheduleElementDto);
+
         return paymentSchedule;
     }
 
-    private PaymentScheduleElementDto createPaymentSchedule(int number,LocalDate date, BigDecimal amount, BigDecimal rate, Integer term, BigDecimal monthlyPayment){
+    private PaymentScheduleElementDto createPaymentSchedule(int number,LocalDate date, BigDecimal totalAmount, BigDecimal rate, Integer term, BigDecimal monthlyPayment){
 
         long amountDay = ChronoUnit.DAYS.between(date.plusMonths(number-1), date.plusMonths(number));
-//        BigDecimal interestPayment = ;
+
+        BigDecimal interestPayment = totalAmount
+                .multiply(rate)
+                .divide(new BigDecimal("365"), 10, RoundingMode.HALF_UP)
+                .multiply(new BigDecimal(amountDay))
+                .setScale(2,RoundingMode.HALF_UP);
+
+        BigDecimal debtPayment = monthlyPayment.subtract(interestPayment);
+
         return PaymentScheduleElementDto.builder()
                 .number(number)
                 .date(date.plusMonths(number))
                 .totalPayment(monthlyPayment)
-//                .interestPayment()
-//                .debtPayment()
-//                .remainingDebt()
+                .interestPayment(interestPayment)
+                .debtPayment(debtPayment)
+                .remainingDebt(totalAmount.subtract(debtPayment))
                 .build();
     }
 }

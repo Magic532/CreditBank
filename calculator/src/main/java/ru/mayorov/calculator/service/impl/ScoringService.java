@@ -15,30 +15,39 @@ public class ScoringService {
 
     public CreditDto scorring(ScoringDataDto scoringDataDto){
 
-        BigDecimal amount = calculateService.calculateAmountScoring(scoringDataDto.getAmount(), scoringDataDto.getEmployment().getSalary(), scoringDataDto.getBirthdate());
+        BigDecimal totalAmount = calculateService.calculateAmountScoring(
+                scoringDataDto.getAmount(),
+                scoringDataDto.getEmployment().getSalary(),
+                scoringDataDto.getTerm(),
+                scoringDataDto.getBirthdate(),
+                scoringDataDto.getIsInsuranceEnabled());
 
-        BigDecimal rate = calculateService.calculateRateScoring(scoringDataDto.getEmployment().getEmploymentStatus(),
-                                                                        scoringDataDto.getEmployment().getPosition(),
-                                                                        scoringDataDto.getMaritalStatus(),
-                                                                        scoringDataDto.getGender(),
-                                                                        scoringDataDto.getBirthdate());
-        Integer term = calculateService.calculateTermScoring(amount, rate, scoringDataDto.getTerm(), scoringDataDto.getEmployment().getSalary());
+        BigDecimal rate = calculateService.calculateRateScoring(
+                scoringDataDto.getEmployment().getEmploymentStatus(),
+                scoringDataDto.getEmployment().getPosition(),
+                scoringDataDto.getMaritalStatus(),
+                scoringDataDto.getGender(),
+                scoringDataDto.getBirthdate());
 
-        BigDecimal monthlyPayment = calculateService.calculateMonthlyPayment(amount, term, rate);
+        Integer term = calculateService.calculateTermScoring(
+                totalAmount,
+                rate,
+                scoringDataDto.getTerm(),
+                scoringDataDto.getEmployment().getSalary());
 
-        BigDecimal psk = calculateService.calculatePsk(monthlyPayment, amount, term);
+        BigDecimal monthlyPayment = calculateService.calculateMonthlyPayment(totalAmount, term, rate);
+
+        BigDecimal psk = calculateService.calculatePsk(monthlyPayment, scoringDataDto.getAmount(), term);
 
         return CreditDto.builder()
-                .amount(amount)
+                .amount(totalAmount)
                 .term(term)
                 .monthlyPayment(monthlyPayment)
                 .rate(rate)
                 .psk(psk)
                 .isInsuranceEnabled(scoringDataDto.getIsInsuranceEnabled())
                 .isSalaryClient(scoringDataDto.getIsSalaryClient())
-//                .paymentSchedule(calculateService.calculatePaymentSchedule())
+                .paymentSchedule(calculateService.calculatePaymentSchedule(totalAmount, rate, term, monthlyPayment))
                 .build();
     }
-
-
 }
