@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ec7cdb89-b7f6-443a-8738-ceb62f766509" name="Changes" comment="created logic service API">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/CalculatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/impl/CalculatorControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/impl/CalculatorControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/EmploymentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/EmploymentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/EmploymentStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/LoanStatementRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/LoanStatementRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/ScoringDataDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/ScoringDataDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculateService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/OfferService.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/OfferService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/ScoringService.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/ScoringService.java" afterDir="false" />
@@ -19,8 +26,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -59,22 +67,35 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.CalculatorApplication.executor": "Run",
+    "JUnit.OfferServiceTest.executor": "Run",
+    "JUnit.OfferServiceTest.generateOffer.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.calculator [clean,package,install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "logic-controller-and-service",
     "jdk.selected.JAVA_MODULE": "17 (2)",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/JavaProjects/creditbank",
+    "last_directory_selection": "D:/JavaProjects/creditbank/calculator/src/main/java/ru/mayorov/calculator/service/impl",
+    "last_opened_file_path": "D:/JavaProjects/VacationPayCalculator",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.36091954",
     "settings.editor.selected.configurable": "preferences.JavaFX"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.mayorov.calculator.service.impl" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CalculatorApplication">
     <configuration name="CalculatorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.CalculatorApplication" />
       <module name="calculator" />
@@ -88,9 +109,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OfferServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.mayorov.calculator.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.mayorov.calculator.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.OfferServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OfferServiceTest.generateOffer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.mayorov.calculator.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.mayorov.calculator.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.OfferServiceTest" />
+      <option name="METHOD_NAME" value="generateOffer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CalculatorApplication" />
+        <item itemvalue="JUnit.OfferServiceTest" />
+        <item itemvalue="JUnit.OfferServiceTest.generateOffer" />
       </list>
     </recent_temporary>
   </component>
@@ -126,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717344966552</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="created logic service API">
+      <option name="closed" value="true" />
+      <created>1717349972310</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717349972310</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

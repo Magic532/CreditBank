@@ -2,6 +2,8 @@ package ru.mayorov.calculator.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;

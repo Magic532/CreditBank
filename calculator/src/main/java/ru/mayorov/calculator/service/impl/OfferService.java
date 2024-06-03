@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -22,20 +23,26 @@ public class OfferService {
 
 
     public List<LoanOfferDto> generateOffer(LoanStatementRequestDto loanStatementRequestDto) {
+        log.info("Генерация предложения для {}", loanStatementRequestDto.toString());
         List<LoanOfferDto> offer = new ArrayList<>();
         try {
-            if (Period.between(loanStatementRequestDto.getBirthdate(), LocalDate.now()).getYears() >= 18) {
-                offer.add(createOffer(false, false, loanStatementRequestDto));
-                offer.add(createOffer(false, false, loanStatementRequestDto));
-                offer.add(createOffer(false, false, loanStatementRequestDto));
-                offer.add(createOffer(false, false, loanStatementRequestDto));
+            int yearsOld = Period.between(loanStatementRequestDto.getBirthdate(), LocalDate.now()).getYears();
+            log.debug("Возраст клиента {} лет", yearsOld);
 
+            if (yearsOld >= 18) {
+                offer.add(createOffer(false, false, loanStatementRequestDto));
+                offer.add(createOffer(false, true, loanStatementRequestDto));
+                offer.add(createOffer(true, false, loanStatementRequestDto));
+                offer.add(createOffer(true, true, loanStatementRequestDto));
+
+                log.info("Предложение сгенерировано");
                 return offer;
             }
         } catch (IllegalArgumentException exception) {
-            System.out.println("Введена некорректная дата рождения");
+            log.error("Введена некорректная дата рождения. Предложение не сгенерировано", exception);
         }
-        return new ArrayList<>(); // Возвращаем пустой список
+        log.info("Возраст менее 18 лет. Сгенерирован пустой список");
+        return new ArrayList<>();
     }
 
 
@@ -49,6 +56,7 @@ public class OfferService {
         BigDecimal rate = calculateService.calculateRateOffer(loanStatementRequestDto.getAmount(), isInsuranceEnabled, isSalaryClient);
 
         return LoanOfferDto.builder()
+            .statementId(UUID.randomUUID())
             .requestedAmount(loanStatementRequestDto.getAmount())
             .totalAmount(totalAmount)
             .term(loanStatementRequestDto.getTerm())

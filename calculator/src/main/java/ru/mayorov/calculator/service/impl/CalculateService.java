@@ -1,9 +1,13 @@
 package ru.mayorov.calculator.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.mayorov.calculator.dto.EmploymentStatusEnum;
 import ru.mayorov.calculator.dto.PaymentScheduleElementDto;
+import ru.mayorov.calculator.units.EmploymentStatusEnum;
+import ru.mayorov.calculator.units.GenderEnum;
+import ru.mayorov.calculator.units.MaritalStatusEnum;
+import ru.mayorov.calculator.units.PositionEnum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,9 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class CalculateService {
 
     private final static BigDecimal LIVINGWAGE = new BigDecimal("20000");
+    private final static BigDecimal DISCOUNTSALARYCLIENT = new BigDecimal("2");
+    private final static BigDecimal DISCOUNTINSURANCEENABLED = new BigDecimal("10");
 
     @Value("$insurancePercentPerMonthMax100")
     private String insurancePercentPerMonthMax100;
@@ -40,6 +47,7 @@ public class CalculateService {
     private String rateMax5000;
 
     public BigDecimal calculateTotalAmountOffer(BigDecimal amount, Integer term, Boolean isInsuranceEnabled){
+        log.info("Начинается расчет общей суммы кредита предложения для суммы {}, сроком {} месяц(ов), страхование включено: {}", amount, term, isInsuranceEnabled);
 
         BigDecimal insurancePercentPerMonth = new BigDecimal(insurancePercentPerMonthMax100);
 
@@ -62,6 +70,8 @@ public class CalculateService {
     }
 
     public BigDecimal calculateRateOffer(BigDecimal amount, Boolean isInsuranceEnabled, Boolean isSalaryClient){
+        log.info("Начинается расчет процентной ставки предложения для суммы {}, страхование включено: {}, зарплатный клиент: {}", amount, isInsuranceEnabled, isSalaryClient);
+
         BigDecimal rate = new BigDecimal(rateMax500);
         if (amount.compareTo(new BigDecimal("500000")) > 0){
             rate = new BigDecimal(rateMax2000);
@@ -71,15 +81,16 @@ public class CalculateService {
         }
 
         if (isInsuranceEnabled){
-            rate = rate.subtract(new BigDecimal("10"));
+            rate = rate.subtract(DISCOUNTINSURANCEENABLED);
         }
         if (isSalaryClient){
-            rate = rate.subtract(new BigDecimal("2"));
+            rate = rate.subtract(DISCOUNTSALARYCLIENT);
         }
         return  rate;
     }
 
     public BigDecimal calculateMonthlyPayment(BigDecimal totalAmount, Integer term, BigDecimal rate){
+        log.info("Начинается расчет ежемесячного платежа для общей суммы {}, срок {} месяц(ов), процентная ставка: {}", totalAmount, term, rate);
 
         rate = rate.divide(new BigDecimal("12"),10, RoundingMode.HALF_UP);
 
@@ -94,13 +105,14 @@ public class CalculateService {
         return annuityСoefficient.multiply(totalAmount).setScale(2, RoundingMode.HALF_UP);
     }
 
-    public BigDecimal calculateAmountScoring(BigDecimal amount, BigDecimal salary, Integer term, LocalDate birthdate, Boolean isInsuranceEnabled) {
+    public BigDecimal calculateAmountScoring(BigDecimal amount, BigDecimal salary, Integer term, LocalDate birthdate, Boolean isInsuranceEnabled, Integer workExperienceTotal, Integer workExperienceCurrent, PositionEnum position) {
+        log.info("Начинается расчет общей суммы кредита для скоринга: сумма {}, зарплата {}, срок {} месяц(ов), дата рождения {}, страхование включено: {}, общий трудовой стаж {}, стаж на текущем месте работы {}, вид занятости: {}", amount, salary, term, birthdate, isInsuranceEnabled, workExperienceTotal, workExperienceCurrent, position);
 
         BigDecimal insurancePercentPerMonth = new BigDecimal(insurancePercentPerMonthMax100);
 
         int age = Period.between(birthdate, LocalDate.now()).getYears();
 
-        if ((amount.divide(salary).compareTo(new BigDecimal("25")) <= 0) && (age >= 20) && (age <= 65)) {
+        if ((amount.divide(salary).compareTo(new BigDecimal("25")) <= 0) && (age >= 20) && (age <= 65) && (workExperienceTotal >= 18) && (workExperienceCurrent >= 3) && position.getDiscount() != null)   {
             if (isInsuranceEnabled) {
                 if (amount.compareTo(new BigDecimal("100000")) > 0) {
                     insurancePercentPerMonth = new BigDecimal(insurancePercentPerMonthMax500);
@@ -118,35 +130,76 @@ public class CalculateService {
                 return amount;
             }
         }
-        return null;
+        return BigDecimal.ZERO;
     }
 
 
     public Integer calculateTermScoring(BigDecimal amount, BigDecimal rate, Integer term, BigDecimal salary){
+        log.info("Начинается расчет срока кредита для скоринга: сумма {}, процентная ставка {}, срок {} месяц(ов), зарплата: {}", amount, rate, term, salary);
+
         if (salary.subtract(calculateMonthlyPayment(amount, term, rate)).compareTo(LIVINGWAGE) > 0){
             return term;
         }else{
-            return null;
+            return 0;
         }
     }
 
-    public BigDecimal calculateRateScoring(EmploymentStatusEnum employmentStatus, Enum position, Enum maritalStatus, Enum gender, LocalDate birthdate){
+    public BigDecimal calculateRateScoring(BigDecimal amount, Boolean isSalaryClient, Boolean isInsuranceEnabled, EmploymentStatusEnum employmentStatus, PositionEnum position, MaritalStatusEnum maritalStatus, GenderEnum gender, LocalDate birthdate){
+        log.info("Начинается расчет процентной ставки для скоринга: сумма {}, страхование включено: {}, зарплатный клиент: {}, уровень занимаемой должности: {}, вид занятости: {}, семейное положение: {}, пол: {}, дата рождения: {}", amount, isInsuranceEnabled, isSalaryClient, employmentStatus, position, maritalStatus, gender, birthdate);
 
-        BigDecimal rate = new BigDecimal("15");
-//        rate.add(employmentStatus.getDiscount())
-        return null;
+        int age = Period.between(birthdate, LocalDate.now()).getYears();
+
+        BigDecimal rate = new BigDecimal(rateMax500);
+
+        if (amount.compareTo(new BigDecimal("500000")) > 0){
+            rate = new BigDecimal(rateMax2000);
+        }
+        if (amount.compareTo(new BigDecimal("2000000")) > 0){
+            rate = new BigDecimal(rateMax5000);
+        }
+
+        if (isInsuranceEnabled) {
+            rate = rate.subtract(DISCOUNTINSURANCEENABLED);
+        }
+
+        if (isSalaryClient){
+            rate.subtract(DISCOUNTSALARYCLIENT);
+        }
+
+        rate.subtract(new BigDecimal(employmentStatus.getDiscount()))
+            .subtract(new BigDecimal(position.getDiscount()))
+            .subtract(new BigDecimal(maritalStatus.getDiscount()));
+
+        switch (gender) {
+            case MALE:
+                if ((age >= 30) && (age <= 55)) {
+                    rate.subtract(new BigDecimal(gender.getDiscount()));
+                }
+                break;
+
+            case FEMALE:
+                if ((age >= 32) && (age <= 60)) {
+                    rate.subtract(new BigDecimal(gender.getDiscount()));
+                }
+                break;
+
+            case NONBINARY:
+                rate.subtract(new BigDecimal(gender.getDiscount()));
+                break;
+        }
+        return rate;
     }
 
     public BigDecimal calculatePsk(BigDecimal monthlyPayment, BigDecimal amount, Integer term){
-//todo исправить пск
-        return (monthlyPayment
+        log.info("Начинается расчет ПСК для: ежемесячный платеж {}, общая сумма {}, срок {} месяц(ов)", monthlyPayment, amount, term);
+
+        return monthlyPayment
                 .multiply(new BigDecimal(term))
-                .divide(amount).subtract(new BigDecimal("1")))
-                .divide(new BigDecimal(term)
-                .divide(new BigDecimal("12")));
+                .subtract(amount);
     }
 
     public List<PaymentScheduleElementDto> calculatePaymentSchedule(BigDecimal totalAmount, BigDecimal rate, Integer term, BigDecimal monthlyPayment){
+        log.info("Начинается расчет графика платежей для: общая сумма {}, процентная ставка {}, срок {} месяц(ов), ежемесячный платеж: {}", totalAmount, rate, term, monthlyPayment);
 
         LocalDate today = LocalDate.now();
         List<PaymentScheduleElementDto> paymentSchedule = new ArrayList<>();

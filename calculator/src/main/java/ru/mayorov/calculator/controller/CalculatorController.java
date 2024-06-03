@@ -1,5 +1,6 @@
 package ru.mayorov.calculator.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mayorov.calculator.dto.CreditDto;
@@ -14,8 +15,8 @@ import java.util.List;
 @Validated
 public interface CalculatorController {
     @PostMapping(value = "/offers")
-    public List<LoanOfferDto> calculatorOffer(@RequestBody @Valid LoanStatementRequestDto loanStatementRequestDto);
+    public ResponseEntity<List<LoanOfferDto>> calculatorOffer(@RequestBody @Valid LoanStatementRequestDto loanStatementRequestDto);
 
     @PostMapping(value = "/calc")
-    public CreditDto calculatorCalc(@RequestBody ScoringDataDto scoringDataDto);
+    public CreditDto calculatorCalc(@RequestBody @Valid ScoringDataDto scoringDataDto);
 }
