@@ -47,7 +47,7 @@ public class CalculatorControllerImpl implements CalculatorController {
         try {
             CreditDto creditDto = scoringService.scorring((scoringDataDto));
             log.info("Закончена обработка запроса калькуляции стоимости кредита");
-            return creditDto;
+            return new ResponseEntity<>(creditDto, HttpStatus.OK).getBody();
         }catch (Exception ex) {
             log.error("Произошла ошибка при обработке запроса на калькуляцию стоимости кредита");
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error processing loan scoring", ex);

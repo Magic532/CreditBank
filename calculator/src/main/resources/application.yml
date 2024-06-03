@@ -1,3 +1,16 @@
+spring:
+  application:
+    name: calculator API
+    description: calculator offer and scoring
+    version: 1.0.0
+  mvc:
+   pathmatch:
+    matching-strategy: ANT_PATH_MATCHER
+  output:
+    ansi:
+      enabled: ALWAYS
+
+
 insurancePercentPerMonthMax100: ${INSURANCE_PERCENT_PER_MONTH_100000_MAX}
 
 insurancePercentPerMonthMax500: ${INSURANCE_PERCENT_PER_MONTH_500000_MAX}
@@ -11,5 +24,4 @@ rateMax500: ${RATE_500000_MAX}
 rateMax2000: ${RATE_2000000_MAX}
 
 rateMax5000: ${RATE_5000000_MAX}
-
 
