@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec7cdb89-b7f6-443a-8738-ceb62f766509" name="Changes" comment="created repository">
+    <list default="true" id="ec7cdb89-b7f6-443a-8738-ceb62f766509" name="Changes" comment=" logic controller and service API">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/CalculatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/impl/CalculatorControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/impl/CalculatorControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -25,14 +30,19 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "state": "OPEN"
+    }
+  ],
   "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Magic532"
+    "state": "OPEN"
   }
 }]]></component>
   <component name="GithubPullRequestsUISettings">
@@ -43,10 +53,10 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2h3U7owH0EqiWWuEMHYcPXCyuyT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -56,20 +66,89 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.CalculatorApplication.executor": "Run",
+    "JUnit.OfferServiceTest.executor": "Run",
+    "JUnit.OfferServiceTest.generateOffer.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.calculator [clean,package,install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/calculator/definition-DTO",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "feature/calculator/logic-controller-and-service",
     "jdk.selected.JAVA_MODULE": "17 (2)",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/JavaProjects/CreditBank1",
+    "last_directory_selection": "D:/JavaProjects/creditbank/calculator/src/main/java/ru/mayorov/calculator/service/impl",
+    "last_opened_file_path": "D:/JavaProjects/VacationPayCalculator",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.36091954"
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.36091954",
+    "settings.editor.selected.configurable": "preferences.JavaFX"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.mayorov.calculator.service.impl" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CalculatorApplication">
+    <configuration name="CalculatorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.CalculatorApplication" />
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.mayorov.calculator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OfferServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.mayorov.calculator.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.mayorov.calculator.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.OfferServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OfferServiceTest.generateOffer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.mayorov.calculator.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.mayorov.calculator.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.OfferServiceTest" />
+      <option name="METHOD_NAME" value="generateOffer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CalculatorApplication" />
+        <item itemvalue="JUnit.OfferServiceTest.generateOffer" />
+        <item itemvalue="JUnit.OfferServiceTest" />
+        <item itemvalue="Application.CalculatorApplication" />
+        <item itemvalue="JUnit.OfferServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -94,11 +173,45 @@
       <option name="project" value="LOCAL" />
       <updated>1716822683328</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="created logic service API">
+      <option name="closed" value="true" />
+      <created>1717344966552</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717344966552</updated>
+    </task>
+    <task id="LOCAL-00003" summary="created logic service API">
+      <option name="closed" value="true" />
+      <created>1717349972310</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717349972310</updated>
+    </task>
+    <task id="LOCAL-00004" summary=" logic controller and service API">
+      <option name="closed" value="true" />
+      <created>1717443148723</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717443148723</updated>
+    </task>
+    <task id="LOCAL-00005" summary=" logic controller and service API">
+      <option name="closed" value="true" />
+      <created>1717443876428</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717443876428</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="created repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="created repository" />
+    <MESSAGE value="created logic service API" />
+    <MESSAGE value=" logic controller and service API" />
+    <option name="LAST_COMMIT_MESSAGE" value=" logic controller and service API" />
   </component>
 </project>
