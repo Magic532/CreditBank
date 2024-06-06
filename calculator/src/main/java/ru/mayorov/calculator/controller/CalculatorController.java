@@ -12,15 +12,30 @@ import ru.mayorov.calculator.dto.ScoringDataDto;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * The interface Calculator controller.
+ */
 @RequestMapping("/calculator")
 @Validated
 public interface CalculatorController {
 
-    @ApiOperation(value = "Get example", notes = "This method returns an example object")
+    /**
+     * Calculator offer response entity.
+     *
+     * @param loanStatementRequestDto the loan statement request dto
+     * @return the response entity
+     */
+    @ApiOperation(value = "Get offers", notes = "This method returns an list offers")
     @PostMapping(value = "/offers")
     public ResponseEntity<List<LoanOfferDto>> calculatorOffer(@RequestBody @Valid LoanStatementRequestDto loanStatementRequestDto);
 
-    @ApiOperation(value = "Get example", notes = "This method returns an example object")
+    /**
+     * Calculator calc credit dto.
+     *
+     * @param scoringDataDto the scoring data dto
+     * @return the credit dto
+     */
+    @ApiOperation(value = "Get calc", notes = "This method returns the calculation of loan terms")
     @PostMapping(value = "/calc")
     public CreditDto calculatorCalc(@RequestBody @Valid ScoringDataDto scoringDataDto);
 }

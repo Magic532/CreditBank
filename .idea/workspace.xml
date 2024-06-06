@@ -5,11 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec7cdb89-b7f6-443a-8738-ceb62f766509" name="Changes" comment=" logic controller and service API">
+      <change afterPath="$PROJECT_DIR$/.idea/intellij-javadocs-4.0.1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_06_2024_23_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_06_2024_23_37__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_27_05_2024_22_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_27_05_2024_22_25__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/CalculatorApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/config/SwapperApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/config/SwapperApiConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/CalculatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/CalculatorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/impl/CalculatorControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/controller/impl/CalculatorControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calculator/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/CreditDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/CreditDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/EmploymentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/EmploymentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/LoanOfferDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/LoanOfferDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/LoanStatementRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/LoanStatementRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/PaymentScheduleElementDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/PaymentScheduleElementDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/ScoringDataDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/dto/ScoringDataDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/CalculateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/OfferService.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/OfferService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/ScoringService.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/service/impl/ScoringService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/units/EmploymentStatusEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/units/EmploymentStatusEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/units/GenderEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/units/GenderEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/units/MaritalStatusEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/units/MaritalStatusEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/units/PositionEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/calculator/src/main/java/ru/mayorov/calculator/units/PositionEnum.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,21 +48,20 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="develop" />
-        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "OPEN"
+      &quot;state&quot;: &quot;OPEN&quot;
     }
   ],
-  "lastFilter": {
-    "state": "OPEN"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -63,35 +80,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CalculatorApplication.executor": "Run",
-    "JUnit.OfferServiceTest.executor": "Run",
-    "JUnit.OfferServiceTest.generateOffer.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.calculator [clean,package,install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "feature/calculator/logic-controller-and-service",
-    "jdk.selected.JAVA_MODULE": "17 (2)",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "D:/JavaProjects/creditbank/calculator/src/main/java/ru/mayorov/calculator/service/impl",
-    "last_opened_file_path": "D:/JavaProjects/VacationPayCalculator",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.36091954",
-    "settings.editor.selected.configurable": "preferences.JavaFX"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CalculatorApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.calculateRateOffer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.calculateTotalAmountOffer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.testCalculateAmountScoring.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.testCalculateMonthlyPayment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.testCalculatePaymentSchedule.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.testCalculatePsk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.testCalculateRateOffer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.testCalculateRateScoring.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.testCalculateTermScoring.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculateServiceTest.testCalculateTotalAmountOffer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculatorApplicationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculatorControllerImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CalculatorControllerImplTest.testCalculatorOffer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OfferServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OfferServiceTest.generateOffer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OfferServiceTest.testGenerateOfferWithNullThrowsException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ScoringServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ScoringServiceTest.scoring.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ScoringServiceTest.testGenerateOfferWithNullThrowsException.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.calculator [clean,package,install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/calculator/add-teat-and-description&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17 (2)&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/JavaProjects/creditbank/calculator/src/main/java/ru/mayorov/calculator/service/impl&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/JavaProjects/VacationPayCalculator&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.36091954&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="ru.mayorov.calculator.service.impl" />
+      <recent name="ru.mayorov.calculator.controller.impl" />
     </key>
   </component>
   <component name="RunManager" selected="Application.CalculatorApplication">
@@ -108,7 +144,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OfferServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculateServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <extension name="coverage">
         <pattern>
@@ -117,13 +153,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.mayorov.calculator.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.OfferServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.CalculateServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OfferServiceTest.generateOffer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculateServiceTest.testCalculateMonthlyPayment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="calculator" />
       <extension name="coverage">
         <pattern>
@@ -132,8 +168,40 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.mayorov.calculator.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.OfferServiceTest" />
-      <option name="METHOD_NAME" value="generateOffer" />
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.CalculateServiceTest" />
+      <option name="METHOD_NAME" value="testCalculateMonthlyPayment" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculateServiceTest.testCalculatePaymentSchedule" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.mayorov.calculator.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.mayorov.calculator.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.CalculateServiceTest" />
+      <option name="METHOD_NAME" value="testCalculatePaymentSchedule" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculateServiceTest.testCalculatePsk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.mayorov.calculator.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.mayorov.calculator.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="ru.mayorov.calculator.service.impl.CalculateServiceTest" />
+      <option name="METHOD_NAME" value="testCalculatePsk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -142,10 +210,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.CalculatorApplication" />
-        <item itemvalue="JUnit.OfferServiceTest.generateOffer" />
-        <item itemvalue="JUnit.OfferServiceTest" />
-        <item itemvalue="Application.CalculatorApplication" />
-        <item itemvalue="JUnit.OfferServiceTest" />
+        <item itemvalue="JUnit.CalculateServiceTest" />
+        <item itemvalue="JUnit.CalculateServiceTest.testCalculateMonthlyPayment" />
+        <item itemvalue="JUnit.CalculateServiceTest.testCalculatePaymentSchedule" />
+        <item itemvalue="JUnit.CalculateServiceTest.testCalculatePsk" />
       </list>
     </recent_temporary>
   </component>
@@ -207,6 +275,29 @@
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="created repository" />

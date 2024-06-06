@@ -8,6 +8,9 @@ import ru.mayorov.calculator.dto.ScoringDataDto;
 
 import java.math.BigDecimal;
 
+/**
+ * The class of service responsible for performing scoring calculations to determine the cost of a loan.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -15,6 +18,12 @@ public class ScoringService {
 
     private final CalculateService calculateService;
 
+    /**
+     * Scoring credit dto.
+     *
+     * @param scoringDataDto the scoring data dto
+     * @return the credit dto
+     */
     public CreditDto scorring(ScoringDataDto scoringDataDto){
         log.info("Начинается расчет стоимости кредита по данным: {}", scoringDataDto.toString());
 

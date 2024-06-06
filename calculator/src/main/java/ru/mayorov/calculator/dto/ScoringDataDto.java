@@ -9,6 +9,9 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * DTO (Data Transfer Object) for loan approval.
+ */
 @Data
 @Builder
 public class ScoringDataDto {
@@ -69,4 +72,26 @@ public class ScoringDataDto {
 
     @NotNull
     private Boolean isSalaryClient;
+
+    public ScoringDataDto(){}
+
+    public ScoringDataDto(BigDecimal amount, Integer term, String firstName, String lastName, String middleName, GenderEnum gender, LocalDate birthdate, String passportSeries, String passportNumber, LocalDate passportIssueDate, String passportIssueBranch, MaritalStatusEnum maritalStatus, Integer dependentAmount, EmploymentDto employment, String accountNumber, Boolean isInsuranceEnabled, Boolean isSalaryClient) {
+        this.amount = amount;
+        this.term = term;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.passportSeries = passportSeries;
+        this.passportNumber = passportNumber;
+        this.passportIssueDate = passportIssueDate;
+        this.passportIssueBranch = passportIssueBranch;
+        this.maritalStatus = maritalStatus;
+        this.dependentAmount = dependentAmount;
+        this.employment = employment;
+        this.accountNumber = accountNumber;
+        this.isInsuranceEnabled = isInsuranceEnabled;
+        this.isSalaryClient = isSalaryClient;
+    }
 }

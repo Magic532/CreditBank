@@ -1,15 +1,41 @@
 package ru.mayorov.calculator.units;
 
+/**
+ *The enum employee employment statuses.
+ */
 public enum EmploymentStatusEnum {
-    MIDDLEMANAGER(2),
-    TOPMANAGER(3);
+    /**
+     * Discount for middle manager, value 2.
+     */
+    MIDDLEMANAGER(0.02),
 
-    private Integer discount;
+    /**
+     * Discount for TOP manager, value 3.
+     */
+    TOPMANAGER(0.03),
 
-    EmploymentStatusEnum(Integer discount){
+    /**
+     * No discount for other, value 0.
+     */
+    OTHER(0.0);
+
+    private Double discount;
+
+    /**
+     * Constructor for initializing a discount.
+     *
+     * @param discount Employment status discount.
+     */
+    EmploymentStatusEnum(Double discount){
         this.discount = discount;
     }
-    public Integer getDiscount(){
+
+    /**
+     * Get discount value.
+     *
+     * @return discount.
+     */
+    public Double getDiscount(){
         return discount;
     }
 }

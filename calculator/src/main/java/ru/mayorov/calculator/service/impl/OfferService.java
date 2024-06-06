@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.UUID;
 
 
+/**
+ * The class of service, calculates various loan offer schemes taking into account various factors.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -21,13 +24,18 @@ public class OfferService {
 
     private final CalculateService calculateService;
 
-
+    /**
+     * Generate offer list.
+     *
+     * @param loanStatementRequestDto the loan statement request dto
+     * @return the list
+     */
     public List<LoanOfferDto> generateOffer(LoanStatementRequestDto loanStatementRequestDto) {
         log.info("Генерация предложения для {}", loanStatementRequestDto.toString());
         List<LoanOfferDto> offer = new ArrayList<>();
         try {
             int yearsOld = Period.between(loanStatementRequestDto.getBirthdate(), LocalDate.now()).getYears();
-            log.debug("Возраст клиента {} лет", yearsOld);
+            log.warn("Возраст клиента {} лет", yearsOld);
 
             if (yearsOld >= 18) {
                 offer.add(createOffer(false, false, loanStatementRequestDto));

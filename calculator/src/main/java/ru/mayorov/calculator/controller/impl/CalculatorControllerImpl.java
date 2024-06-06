@@ -16,6 +16,11 @@ import ru.mayorov.calculator.service.impl.ScoringService;
 
 import java.util.List;
 
+/**
+ * An implementation of the CalculatorController interface that provides specific implementations for creating loan proposals.
+ *
+ * This class handles incoming HTTP requests to the /calculator endpoint.
+ */
 @RestController
 @Slf4j
 public class CalculatorControllerImpl implements CalculatorController {
@@ -23,11 +28,23 @@ public class CalculatorControllerImpl implements CalculatorController {
     private final OfferService offerService;
     private final ScoringService scoringService;
 
+    /**
+     * Instantiates a new Calculator controller.
+     *
+     * @param offerService   the offer service.
+     * @param scoringService the scoring service.
+     */
     public CalculatorControllerImpl(OfferService offerService, ScoringService scoringService) {
         this.offerService = offerService;
         this.scoringService = scoringService;
     }
 
+    /**
+     * Processes requests to create a list of loan offers.
+     *
+     * @param loanStatementRequestDto the loan statement request dto.
+     * @return A {ResponseEntity} object containing a list of {LoanOfferDto} objects representing the generated loan offers.
+     */
     @Override
     public ResponseEntity<List<LoanOfferDto>> calculatorOffer(LoanStatementRequestDto loanStatementRequestDto) {
         log.info(("Начало обработки запроса калькуляции предложения"));
@@ -41,6 +58,12 @@ public class CalculatorControllerImpl implements CalculatorController {
         }
     }
 
+    /**
+     * Handles requests to calculate the cost of a credit based on the provided scoring data.
+     *
+     * @param scoringDataDto the scoring data dto.
+     * @return {link CreditDto} object, to information about the estimated cost of the loan.
+     */
     @Override
     public CreditDto calculatorCalc(ScoringDataDto scoringDataDto) {
         log.info(("Начало обработки запроса калькуляции стоимости кредита"));

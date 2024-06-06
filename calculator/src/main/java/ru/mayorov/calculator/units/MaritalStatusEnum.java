@@ -1,16 +1,39 @@
 package ru.mayorov.calculator.units;
 
+/**
+ * The enum marital status.
+ */
 public enum MaritalStatusEnum {
-    MARRIED(3),
-    DIVORCED(-1),
-    SINGLE(0);
+    /**
+     * Discount for Married marital status, value 3.
+     */
+    MARRIED(0.03),
+    /**
+     * Allowance for Divorced marital status, value 1.
+     */
+    DIVORCED(-0.01),
+    /**
+     * Single marital status, no discount.
+     */
+    SINGLE(0.0);
 
-    private Integer discount;
-   MaritalStatusEnum(Integer discount){
+    /**
+     * Constructor for initializing a discount.
+     *
+     * @param discount Marital status discount.
+     */
+    private Double discount;
+   MaritalStatusEnum(Double discount){
        this.discount = discount;
     }
 
-    public Integer getDiscount(){
+
+    /**
+     * Get discount value.
+     *
+     * @return discount.
+     */
+    public Double getDiscount(){
        return discount;
     }
 }

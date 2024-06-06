@@ -2,13 +2,14 @@ package ru.mayorov.calculator.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * DTO (Data Transfer Object) to request for offer approval
+ */
 @Data
 @Builder
 public class LoanStatementRequestDto {
@@ -46,4 +47,18 @@ public class LoanStatementRequestDto {
     @NotBlank
     @Size(min = 6, max = 6, message = "Не верно указан номер паспорта")
     private String passportNumber;
+
+    public LoanStatementRequestDto(){}
+
+    public LoanStatementRequestDto(BigDecimal amount, Integer term, String firstName, String middleName, String lastName, String email, LocalDate birthdate, String passportSeries, String passportNumber) {
+        this.amount = amount;
+        this.term = term;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.email = email;
+        this.birthdate = birthdate;
+        this.passportSeries = passportSeries;
+        this.passportNumber = passportNumber;
+    }
 }
