@@ -1,5 +1,6 @@
 package ru.mayorov.deal.model;
 
+
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,6 +29,18 @@ public class Passport {
 
     @Column(name = "issue_date", columnDefinition = "DATE")
     private LocalDate issueDate;
+
+    public Passport() {
+    }
+
+    public Passport(UUID passportUUID, Client client, String series, String number, String issueBranch, LocalDate issueDate) {
+        this.passportUUID = passportUUID;
+        this.client = client;
+        this.series = series;
+        this.number = number;
+        this.issueBranch = issueBranch;
+        this.issueDate = issueDate;
+    }
 
     public UUID getPassportUUID() {
         return passportUUID;

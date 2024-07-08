@@ -1,4 +1,4 @@
-package ru.mayorov.calculator.service.impl;
+package ru.mayorov.calculator.service;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -47,8 +47,10 @@ class CalculateServiceTest {
         BigDecimal expectedAmountInsFalse = new BigDecimal("100000.00");
         BigDecimal expectedAmountInsTrue = new BigDecimal("124000.00");
 
-        BigDecimal actualAmountInsFalse = calculateService.calculateTotalAmountOffer(amount, term, isInsFalse).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal actualAmountInsTrue = calculateService.calculateTotalAmountOffer(amount, term, isInsTrue).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountInsFalse = calculateService.calculateTotalAmountOffer(amount, term, isInsFalse)
+                .setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountInsTrue = calculateService.calculateTotalAmountOffer(amount, term, isInsTrue)
+                .setScale(2, RoundingMode.HALF_UP);
 
         assertEquals(expectedAmountInsFalse, actualAmountInsFalse);
         assertEquals(expectedAmountInsTrue, actualAmountInsTrue);
@@ -117,13 +119,27 @@ class CalculateServiceTest {
         BigDecimal expectedAmountWorkExperienceCurrentLow = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
         BigDecimal expectedAmountEmploymentStatusUnemployed = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
 
-        BigDecimal actualAmountInsTrue = calculateService.calculateAmountScoring(amount, salary, term, birthdate, isInsuranceEnabledTrue,workExperienceTotal, workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal actualAmountInsFalse = calculateService.calculateAmountScoring(amount, salary, term, birthdate, isInsuranceEnabledFalse,workExperienceTotal, workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal actualAmountSalaryLow = calculateService.calculateAmountScoring(amount, salaryLow, term, birthdate, isInsuranceEnabledTrue,workExperienceTotal, workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal actualAmountBirthdateLow = calculateService.calculateAmountScoring(amount, salary, term, birthdateLow, isInsuranceEnabledTrue,workExperienceTotal, workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal actualAmountWorkExperienceTotalLow = calculateService.calculateAmountScoring(amount, salary, term, birthdate, isInsuranceEnabledTrue,workExperienceTotalLow, workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal actualAmountWorkExperienceCurrentLow = calculateService.calculateAmountScoring(amount, salary, term, birthdate, isInsuranceEnabledTrue,workExperienceTotal, workExperienceCurrentLow, employmentStatus).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal actualAmountEmploymentStatusUnemployed = calculateService.calculateAmountScoring(amount, salary, term, birthdate, isInsuranceEnabledTrue,workExperienceTotal, workExperienceCurrent, employmentStatusUnemployed).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountInsTrue = calculateService.calculateAmountScoring(
+                amount, salary, term, birthdate, isInsuranceEnabledTrue,workExperienceTotal,
+                workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountInsFalse = calculateService.calculateAmountScoring(
+                amount, salary, term, birthdate, isInsuranceEnabledFalse,workExperienceTotal,
+                workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountSalaryLow = calculateService.calculateAmountScoring(
+                amount, salaryLow, term, birthdate, isInsuranceEnabledTrue,workExperienceTotal,
+                workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountBirthdateLow = calculateService.calculateAmountScoring(
+                amount, salary, term, birthdateLow, isInsuranceEnabledTrue,workExperienceTotal,
+                workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountWorkExperienceTotalLow = calculateService.calculateAmountScoring(
+                amount, salary, term, birthdate, isInsuranceEnabledTrue,workExperienceTotalLow,
+                workExperienceCurrent, employmentStatus).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountWorkExperienceCurrentLow = calculateService.calculateAmountScoring(
+                amount, salary, term, birthdate, isInsuranceEnabledTrue,workExperienceTotal,
+                workExperienceCurrentLow, employmentStatus).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualAmountEmploymentStatusUnemployed = calculateService.calculateAmountScoring(
+                amount, salary, term, birthdate, isInsuranceEnabledTrue,workExperienceTotal,
+                workExperienceCurrent, employmentStatusUnemployed).setScale(2, RoundingMode.HALF_UP);
 
         assertEquals(expectedAmountInsFalse, actualAmountInsFalse);
         assertEquals(expectedAmountInsTrue, actualAmountInsTrue);
@@ -165,7 +181,9 @@ class CalculateServiceTest {
 
         BigDecimal expectedRateScoring = new BigDecimal("0.11");
 
-        BigDecimal actualRateScoring = calculateService.calculateRateScoring(amount, isSalaryClient, isInsuranceEnabled, employmentStatus, position, maritalStatus, gender, birthdate).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal actualRateScoring = calculateService.calculateRateScoring(
+                amount, isSalaryClient, isInsuranceEnabled, employmentStatus, position,
+                maritalStatus, gender, birthdate).setScale(2, RoundingMode.HALF_UP);
 
         assertEquals(expectedRateScoring, actualRateScoring);
     }

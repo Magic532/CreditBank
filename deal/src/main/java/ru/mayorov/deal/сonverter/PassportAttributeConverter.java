@@ -15,21 +15,23 @@ public class PassportAttributeConverter implements AttributeConverter<Passport, 
 
     @Override
     public String convertToDatabaseColumn(Passport passport) {
+        log.info("Начинается конвертация Passport в JSON");
         try {
             return objectMapper.writeValueAsString(passport);
-        } catch (JsonProcessingException jpe) {
-            log.warn("Cannot convert Passport into JSON");
-            return null;
+        } catch (JsonProcessingException e) {
+            log.warn("Не может быть сконвертирован Passport в JSON");
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public Passport convertToEntityAttribute(String value) {
+        log.info("Начинается конвертация JSON в Passport");
         try {
             return objectMapper.readValue(value, Passport.class);
         }catch (JsonProcessingException e){
-            log.warn("Cannot convert JSON into Passport");
-            return null;
+            log.warn("Не может быть сконвертирован JSON в Passport");
+            throw new RuntimeException(e);
         }
     }
 }

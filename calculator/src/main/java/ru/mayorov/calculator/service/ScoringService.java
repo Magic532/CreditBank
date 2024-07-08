@@ -1,4 +1,4 @@
-package ru.mayorov.calculator.service.impl;
+package ru.mayorov.calculator.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

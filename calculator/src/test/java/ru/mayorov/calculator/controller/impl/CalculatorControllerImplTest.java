@@ -12,8 +12,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import ru.mayorov.calculator.dto.*;
-import ru.mayorov.calculator.service.impl.OfferService;
-import ru.mayorov.calculator.service.impl.ScoringService;
+import ru.mayorov.calculator.service.OfferService;
+import ru.mayorov.calculator.service.ScoringService;
 import ru.mayorov.calculator.units.GenderEnum;
 import ru.mayorov.calculator.units.MaritalStatusEnum;
 

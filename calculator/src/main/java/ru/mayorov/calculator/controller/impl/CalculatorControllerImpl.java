@@ -10,8 +10,8 @@ import ru.mayorov.calculator.dto.CreditDto;
 import ru.mayorov.calculator.dto.LoanOfferDto;
 import ru.mayorov.calculator.dto.LoanStatementRequestDto;
 import ru.mayorov.calculator.dto.ScoringDataDto;
-import ru.mayorov.calculator.service.impl.OfferService;
-import ru.mayorov.calculator.service.impl.ScoringService;
+import ru.mayorov.calculator.service.OfferService;
+import ru.mayorov.calculator.service.ScoringService;
 
 import java.util.List;
 

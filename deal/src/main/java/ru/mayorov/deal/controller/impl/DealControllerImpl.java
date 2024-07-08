@@ -1,6 +1,10 @@
 package ru.mayorov.deal.controller.impl;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,26 +21,22 @@ import java.util.List;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class DealControllerImpl implements DealController {
 
-    private CalculateCalcService calculateCalcService;
-    private CalculateOfferService calculateOfferService;
-    private OfferSelectService offerSelectService;
+    private final CalculateCalcService calculateCalcService;
 
-    public DealControllerImpl(CalculateCalcService calculateCalcService,
-                              CalculateOfferService calculateOfferService,
-                              OfferSelectService offerSelectService){
-        this.calculateCalcService = calculateCalcService;
-        this.calculateOfferService = calculateOfferService;
-        this.offerSelectService = offerSelectService;
+    private final CalculateOfferService calculateOfferService;
 
-    }
+    private final OfferSelectService offerSelectService;
+
+
     @Override
     public ResponseEntity<List<LoanOfferDto>> calculateOffer(LoanStatementRequestDto loanStatementRequestDto) {
         log.info("Начало создания предложения для клиента и сохранения данных.");
         try {
             List<LoanOfferDto> offers = calculateOfferService.createdOffer(loanStatementRequestDto);
-            log.info("Законгчено формирование и сохранение данных.");
+            log.info("Закончено формирование и сохранение данных.");
             return new ResponseEntity<>(offers, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Произошла ошибка создания предложения для клиента и сохранения данных.");

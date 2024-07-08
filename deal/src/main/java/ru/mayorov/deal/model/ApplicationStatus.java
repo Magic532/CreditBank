@@ -1,5 +1,6 @@
 package ru.mayorov.deal.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,11 +11,11 @@ public class ApplicationStatus {
     @Enumerated(EnumType.STRING)
     private ApplicationStatusEnum applicationStatus;
 
-    public ApplicationStatusEnum getApplicationStatus() {
+    public ApplicationStatusEnum getApplicationStatusEnum() {
         return applicationStatus;
     }
 
-    public void setApplicationStatus(ApplicationStatusEnum applicationStatus) {
+    public void setApplicationStatusEnum(ApplicationStatusEnum applicationStatus) {
         this.applicationStatus = applicationStatus;
     }
 }

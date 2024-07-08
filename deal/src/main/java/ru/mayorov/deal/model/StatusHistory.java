@@ -1,18 +1,27 @@
 package ru.mayorov.deal.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 
-import java.sql.Timestamp;
+import jakarta.persistence.*;
+import ru.mayorov.deal.сonverter.StatementStatusHistoryDtoListConverter;
 
 @Entity
 public class StatusHistory {
-    @Column(name = "status", columnDefinition = "varchar")
-    private String status;
 
-    @Column(name = "time", columnDefinition = "TIMESTAMP")
-    private Timestamp time;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "status_history")
+    @Convert(converter = StatementStatusHistoryDtoListConverter.class)
+    @Column(name = "status_history", columnDefinition = "jsonb")
+    private StatementStatusHistoryDtoListConverter statementStatusHistoryDtoListConverter;
 
-    @Column(name = "change_type", columnDefinition = "varchar")
-    private ChangeType changeType;
+    public StatusHistory(StatementStatusHistoryDtoListConverter statementStatusHistoryDtoListConverter) {
+        this.statementStatusHistoryDtoListConverter = statementStatusHistoryDtoListConverter;
+    }
+
+    public StatementStatusHistoryDtoListConverter getStatementStatusHistoryDtoList() {
+        return statementStatusHistoryDtoListConverter;
+    }
+
+    public void setStatementStatusHistoryDtoList(StatementStatusHistoryDtoListConverter statementStatusHistoryDtoListConverter) {
+        this.statementStatusHistoryDtoListConverter = statementStatusHistoryDtoListConverter;
+    }
 }

@@ -1,5 +1,6 @@
 package ru.mayorov.deal.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,11 +11,11 @@ public class ChangeType {
     @Enumerated(EnumType.STRING)
     private ChangeTypeEnum changeType;
 
-    public ChangeTypeEnum getChangeType() {
+    public ChangeTypeEnum getChangeTypeEnum() {
         return changeType;
     }
 
-    public void setChangeType(ChangeTypeEnum changeType) {
+    public void setChangeTypeEnum(ChangeTypeEnum changeType) {
         this.changeType = changeType;
     }
 }

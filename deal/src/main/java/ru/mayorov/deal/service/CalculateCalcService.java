@@ -1,37 +1,54 @@
 package ru.mayorov.deal.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
 import ru.mayorov.deal.calculatorapi.CalculatorServiceApi;
 import ru.mayorov.deal.dto.CreditDto;
 import ru.mayorov.deal.dto.FinishRegistrationRequestDto;
 import ru.mayorov.deal.dto.ScoringDataDto;
-import ru.mayorov.deal.model.Client;
-import ru.mayorov.deal.model.Credit;
-import ru.mayorov.deal.model.CreditStatus;
-import ru.mayorov.deal.model.Statement;
-import ru.mayorov.deal.repository.ClientRepository;
+import ru.mayorov.deal.dto.StatementStatusHistoryDto;
+import ru.mayorov.deal.model.*;
 import ru.mayorov.deal.repository.CreditRepository;
 import ru.mayorov.deal.repository.StatementRepository;
+import ru.mayorov.deal.units.ApplicationStatusEnum;
+import ru.mayorov.deal.units.ChangeTypeEnum;
 import ru.mayorov.deal.units.CreditStatusEnum;
 
+import java.sql.Timestamp;
+import java.util.List;
 
+
+@Service
+@Slf4j
+@RequiredArgsConstructor
 public class CalculateCalcService {
-    @Autowired
-    private ClientRepository clientRepository;
-    @Autowired
-    private StatementRepository statementRepository;
 
-    @Autowired
-    private CreditRepository creditRepository;
-    @Autowired
-    private CalculatorServiceApi calculatorServiceApi;
+    private final StatementRepository statementRepository;
 
+    private final CreditRepository creditRepository;
+
+    private final CalculatorServiceApi calculatorServiceApi;
+
+    private final CreditStatus creditStatus;
+
+    private final ApplicationStatus applicationStatus;
+
+    @Transactional
     public CalculateCalcService loanApproval(FinishRegistrationRequestDto finishRegistrationRequestDto, String statementId){
-        Statement statement = statementRepository.findById(statementId).orElseThrow(() -> new RuntimeException("Statement not found"));
+        log.info("Начинается получение из БД сущности statement");
+        Statement statement = statementRepository.findById(Long.parseLong(statementId))
+                .orElseThrow(() -> new RuntimeException("Statement not found"));
 
         Client client = statement.getClient();
 
-        ScoringDataDto scoringDataDto = new ScoringDataDto(statement.getAppliedOffer().getRequestedAmount(),
+        log.info("Начинается наполнение данными ScoringDataDto для предложения {}", statement.getAppliedOffer());
+        ScoringDataDto scoringDataDto = new ScoringDataDto(
+                statement.getAppliedOffer().getRequestedAmount(),
                 statement.getAppliedOffer().getTerm(),
                 client.getFirstName(),
                 client.getLastName(),
@@ -50,22 +67,43 @@ public class CalculateCalcService {
                 statement.getAppliedOffer().getIsSalaryClient()
         );
 
+        log.info("Начинается вызов метода одобрения кредита");
         CreditDto creditDto = calculatorServiceApi.getCalc(scoringDataDto);
 
-        Credit credit = new Credit(creditDto.getAmount(),
+        creditStatus.setCreditStatusEnum(CreditStatusEnum.CALCULATED);
+
+        log.info("Начинается наполнение данными сущности credit");
+        Credit credit = new Credit(
+                creditDto.getAmount(),
                 creditDto.getTerm(),
                 creditDto.getMonthlyPayment(),
                 creditDto.getRate(),
                 creditDto.getPsk(),
                 creditDto.getPaymentSchedule(),
                 creditDto.getInsuranceEnabled(),
-                creditDto.getSalaryClient()
+                creditDto.getSalaryClient(),
+                creditStatus.getCreditStatusEnum()
             );
 
-        //TODO добавить исторический статус, наполнить лист?
+        log.info("Начинается сохранение в базу данных сущности credit");
+        creditRepository.save(credit);
 
-        //creditRepository.save(credit);
+        log.info("Начинается наполнение данными сущности statement");
+        applicationStatus.setApplicationStatusEnum(ApplicationStatusEnum.APPROVED);
 
+        List<StatementStatusHistoryDto> updatedStatusHistory = statement.getStatusHistory();
+
+        updatedStatusHistory.add(new StatementStatusHistoryDto(
+                ApplicationStatusEnum.APPROVED,
+                new Timestamp(System.currentTimeMillis()),
+                ChangeTypeEnum.AUTOMATIC));
+
+        statement.setStatusHistory(updatedStatusHistory);
+
+        log.info("Начинается сохранение в базу данных сущности statement");
+        statementRepository.save(statement);
+
+        log.info("Завершено одобрение кредита сущности statement и credit сохранены в БД");
         return null;
     }
 }

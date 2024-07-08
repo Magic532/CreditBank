@@ -1,5 +1,6 @@
 package ru.mayorov.deal.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

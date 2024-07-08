@@ -1,17 +1,23 @@
 package ru.mayorov.deal.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 import ru.mayorov.deal.dto.LoanOfferDto;
+import ru.mayorov.deal.dto.StatementStatusHistoryDto;
 import ru.mayorov.deal.units.ApplicationStatusEnum;
+import ru.mayorov.deal.сonverter.LoanOfferDtoConverter;
+import ru.mayorov.deal.сonverter.StatementStatusHistoryDtoListConverter;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "statement")
+@Getter
+@Setter
 public class Statement {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -19,11 +25,11 @@ public class Statement {
     @Column(name = "statement_id", updatable = false, nullable = false)
     private UUID statementId;
 
-    @OneToOne(mappedBy = "statement", optional = false)
+    @OneToOne(mappedBy = "statement", optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", referencedColumnName = "client_id")
     private Client client;
 
-    @OneToOne(mappedBy = "statement", optional = false)
+    @OneToOne(mappedBy = "statement", optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "credit_id", referencedColumnName = "credit_id")
     private Credit credit;
 
@@ -34,7 +40,7 @@ public class Statement {
     private Timestamp creationDate;
 
     @Column(name = "applied_offer", columnDefinition = "jsonb")
-    @JdbcTypeCode(SqlTypes.JSON)
+    @Convert(converter = LoanOfferDtoConverter.class)
     private LoanOfferDto appliedOffer;
 
     @Column(name = "sign_date", columnDefinition = "TIMESTAMP")
@@ -44,78 +50,21 @@ public class Statement {
     private String sesCode;
 
     @Column(name = "status_history", columnDefinition = "jsonb")
-    @JdbcTypeCode(SqlTypes.JSON)
-    private StatusHistory statusHistory;
+    @Convert(converter = StatementStatusHistoryDtoListConverter.class)
+    private List<StatementStatusHistoryDto> statusHistory;
 
-    public UUID getStatementId() {
-        return statementId;
+    public Statement() {
     }
 
-    public void setStatementId(UUID statementId) {
+    public Statement(UUID statementId, Client client, Credit credit, ApplicationStatusEnum status, Timestamp creationDate, LoanOfferDto appliedOffer, Timestamp signDate, String sesCode, List<StatementStatusHistoryDto> statusHistory) {
         this.statementId = statementId;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Credit getCredit() {
-        return credit;
-    }
-
-    public void setCredit(Credit credit) {
         this.credit = credit;
-    }
-
-    public ApplicationStatusEnum getStatus() {
-        return status;
-    }
-
-    public void setStatus(ApplicationStatusEnum status) {
         this.status = status;
-    }
-
-    public Timestamp getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public LoanOfferDto getAppliedOffer() {
-        return appliedOffer;
-    }
-
-    public void setAppliedOffer(LoanOfferDto appliedOffer) {
         this.appliedOffer = appliedOffer;
-    }
-
-    public Timestamp getSignDate() {
-        return signDate;
-    }
-
-    public void setSignDate(Timestamp signDate) {
         this.signDate = signDate;
-    }
-
-    public String getSesCode() {
-        return sesCode;
-    }
-
-    public void setSesCode(String sesCode) {
         this.sesCode = sesCode;
-    }
-
-    public StatusHistory getStatusHistory() {
-        return statusHistory;
-    }
-
-    public void setStatusHistory(StatusHistory statusHistory) {
         this.statusHistory = statusHistory;
     }
 }

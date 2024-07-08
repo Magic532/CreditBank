@@ -31,7 +31,8 @@ public class PaymentScheduleElementDto {
     @Schema(description = "Оставшийся основной долг")
     private BigDecimal remainingDebt;
 
-    public PaymentScheduleElementDto() {}
+    public PaymentScheduleElementDto() {
+    }
 
     public PaymentScheduleElementDto(Integer number,
                                      LocalDate date,
@@ -94,6 +95,5 @@ public class PaymentScheduleElementDto {
     public void setRemainingDebt(BigDecimal remainingDebt) {
         this.remainingDebt = remainingDebt;
     }
-=======
->>>>>>> b098792 (Реализация mvp1)
 }
+

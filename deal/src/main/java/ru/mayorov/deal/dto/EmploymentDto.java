@@ -20,7 +20,7 @@ public class EmploymentDto {
     private EmploymentStatusEnum employmentStatus;
 
     @NotBlank
-    @Size(min = 12, max = 12, message = "Не верно указан ИНН")
+    @Size(min = 10, max = 12, message = "Не верно указан ИНН")
     private String employerINN;
 
     @Min(value = 0, message = "Доход клиента не может быть меньше 0")

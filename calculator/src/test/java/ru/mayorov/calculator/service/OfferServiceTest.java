@@ -1,4 +1,4 @@
-package ru.mayorov.calculator.service.impl;
+package ru.mayorov.calculator.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

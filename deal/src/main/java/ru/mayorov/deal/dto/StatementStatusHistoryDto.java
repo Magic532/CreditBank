@@ -1,40 +1,40 @@
 package ru.mayorov.deal.dto;
 
 import lombok.Data;
+import ru.mayorov.deal.units.ApplicationStatusEnum;
 import ru.mayorov.deal.units.ChangeTypeEnum;
-import ru.mayorov.deal.units.CreditStatusEnum;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Data
 public class StatementStatusHistoryDto {
-    private CreditStatusEnum status;
-    private LocalDateTime time;
+    private ApplicationStatusEnum status;
+    private Timestamp time;
     private ChangeTypeEnum changeType;
 
-    public StatementStatusHistoryDto(CreditStatusEnum status) {
+    public StatementStatusHistoryDto(ApplicationStatusEnum status) {
         this.status = status;
     }
 
-    public StatementStatusHistoryDto(CreditStatusEnum status, LocalDateTime time, ChangeTypeEnum changeType) {
+    public StatementStatusHistoryDto(ApplicationStatusEnum status, Timestamp time, ChangeTypeEnum changeType) {
         this.status = status;
         this.time = time;
         this.changeType = changeType;
     }
 
-    public CreditStatusEnum getStatus() {
+    public ApplicationStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(CreditStatusEnum status) {
+    public void setStatus(ApplicationStatusEnum status) {
         this.status = status;
     }
 
-    public LocalDateTime getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 
